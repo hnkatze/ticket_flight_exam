@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:ticket_flight_exam/components/app_bar_compo.dart';
 import 'package:uuid/uuid.dart';
 import '../models/ticket_avion_model.dart';
 import '../services/tocket_avion_provider.dart';
@@ -8,6 +10,8 @@ class AddTicketScreen extends StatefulWidget {
   const AddTicketScreen({super.key});
 
   @override
+
+  // ignore: library_private_types_in_public_api
   _AddTicketScreenState createState() => _AddTicketScreenState();
 }
 
@@ -37,9 +41,7 @@ class _AddTicketScreenState extends State<AddTicketScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add Ticket'),
-      ),
+      appBar: const CustomAppBar(title: 'Agregar Ticket de Avión'),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -135,7 +137,7 @@ class _AddTicketScreenState extends State<AddTicketScreen> {
                     Provider.of<TicketAvionProvider>(context, listen: false)
                         .addTicket(newTicket);
 
-                    Navigator.of(context).pop();
+                    context.goNamed('home');
                   }
                 },
                 child: const Text('Agregar Ticket'),

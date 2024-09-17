@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:ticket_flight_exam/components/app_bar_compo.dart';
 import '../models/ticket_avion_model.dart';
 import '../services/tocket_avion_provider.dart';
 
@@ -15,9 +16,7 @@ class TicketDetailScreen extends StatelessWidget {
         Provider.of<TicketAvionProvider>(context, listen: false);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Detalles del Ticket'),
-      ),
+      appBar: const CustomAppBar(title: "Detalles del Ticket"),
       body: FutureBuilder<TicketAvion>(
         future: ticketProvider.getTicketById(id),
         builder: (context, snapshot) {
@@ -36,7 +35,7 @@ class TicketDetailScreen extends StatelessWidget {
           final ticket = snapshot.data!;
 
           return Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Card(
                 elevation: 4,
@@ -73,7 +72,6 @@ class TicketDetailScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 16),
-                      // Información del pasajero
                       Row(
                         children: [
                           Icon(
@@ -88,11 +86,9 @@ class TicketDetailScreen extends StatelessWidget {
                         ],
                       ),
                       const Divider(height: 30, thickness: 1),
-                      // Información de vuelo: origen y destino
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          // Origen
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -119,7 +115,6 @@ class TicketDetailScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          // Destino
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -149,11 +144,9 @@ class TicketDetailScreen extends StatelessWidget {
                         ],
                       ),
                       const Divider(height: 30, thickness: 1),
-                      // Información del asiento y clase
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          // Asiento
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -210,7 +203,6 @@ class TicketDetailScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 16),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [

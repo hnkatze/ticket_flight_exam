@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/add_ticket_screen.dart';
-import 'screens/tocket_avion_screen.dart';
+import 'screens/ticket_details_screen.dart';
+import 'screens/ticket_edit_screen.dart';
+import 'screens/ticket_avion_screen.dart';
 import 'services/tocket_avion_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:go_router/go_router.dart';
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         name: 'editTicket',
         builder: (context, state) {
           final String ticketId = state.pathParameters['id']!;
-          return EditTicketScreen(ticketId: ticketId);
+          return TicketEditScreen(ticketId: ticketId);
         },
       ),
       GoRoute(
@@ -38,11 +40,15 @@ class MyApp extends StatelessWidget {
         name: 'ticketDetail',
         builder: (context, state) {
           final String ticketId = state.pathParameters['id']!;
-          return TicketDetailScreen(ticketId: ticketId);
+          return TicketDetailScreen(
+            id: ticketId,
+          );
         },
       ),
     ],
   );
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,55 +59,10 @@ class MyApp extends StatelessWidget {
         child: MaterialApp.router(
           routerConfig: _router,
           title: 'Ticket Management App',
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
         ));
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Tickets List')),
-      body: const Center(child: Text('List of Tickets')),
-    );
-  }
-}
-
-// class AddTicketScreen extends StatelessWidget {
-//   const AddTicketScreen({super.key});
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: const Text('Add Ticket')),
-//       body: const Center(child: Text('Form to Add a Ticket')),
-//     );
-//   }
-// }
-
-class EditTicketScreen extends StatelessWidget {
-  final String ticketId;
-  const EditTicketScreen({super.key, required this.ticketId});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Edit Ticket')),
-      body: Center(child: Text('Editing Ticket ID: $ticketId')),
-    );
-  }
-}
-
-class TicketDetailScreen extends StatelessWidget {
-  final String ticketId;
-  const TicketDetailScreen({super.key, required this.ticketId});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Ticket Details')),
-      body: Center(child: Text('Details of Ticket ID: $ticketId')),
-    );
   }
 }

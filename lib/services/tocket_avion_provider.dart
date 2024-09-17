@@ -50,7 +50,6 @@ class TicketAvionProvider with ChangeNotifier {
     }
   }
 
-  // Eliminar un ticket
   Future<void> deleteTicket(String ticketId) async {
     try {
       await _ticketCollection.doc(ticketId).delete();
@@ -59,5 +58,29 @@ class TicketAvionProvider with ChangeNotifier {
     } catch (e) {
       print("Error al eliminar el ticket: $e");
     }
+  }
+
+  Future<TicketAvion> getTicketById(String ticketId) async {
+    try {
+      DocumentSnapshot doc = await _ticketCollection.doc(ticketId).get();
+      return TicketAvion.fromFirestore(
+          doc.data() as Map<String, dynamic>, doc.id);
+    } catch (e) {
+      print("Error al obtener el ticket por ID: $e");
+      return TicketAvion(
+        id: '',
+        numeroVuelo: '',
+        aerolinea: '',
+        nombrePasajero: '',
+        origen: '',
+        destino: '',
+        asiento: '',
+        clase: '',
+      );
+    }
+  }
+
+  void clearTickets() {
+    _tickets.clear();
   }
 }
