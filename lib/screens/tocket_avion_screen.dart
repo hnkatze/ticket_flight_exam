@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:ticket_flight_exam/main.dart';
 import '../services/tocket_avion_provider.dart';
 
 class TicketAvionScreen extends StatefulWidget {
@@ -37,9 +39,7 @@ class _TicketAvionScreenState extends State<TicketAvionScreen> {
               children: [
                 IconButton(
                   icon: const Icon(Icons.edit),
-                  onPressed: () {
-                    // Lógica para editar el ticket
-                  },
+                  onPressed: () {},
                 ),
                 IconButton(
                   icon: const Icon(Icons.delete),
@@ -53,9 +53,7 @@ class _TicketAvionScreenState extends State<TicketAvionScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Lógica para agregar un nuevo ticket
-        },
+        onPressed: () => context.goNamed('addTicket'),
         child: const Icon(Icons.add),
       ),
     );
