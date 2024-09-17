@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1004519723752",
+    "project_id": "electionstest-a6f8d",
+    "storage_bucket": "electionstest-a6f8d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004519723752:android:f8335c2d6ea2730df62f5d",
+        "android_client_info": {
+          "package_name": "com.flight.exam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCFAgeINRHGqoR-bWbaAt-EeLgm9DzGeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
